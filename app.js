@@ -10,6 +10,12 @@ var users = require('./routes/users');
 
 var app = express();
 
+var fs = require('fs'); // Used for calendar API demo; probably not needed for full
+var readline = require('readline');
+var google = require('googleapis');
+var googleAuth = require('google-auth-library');
+var calendar = google.calendar('v3');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -58,3 +64,9 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+app.set('port', process.env.PORT || 5678);
+
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port #' + app.get('port'));
+});
