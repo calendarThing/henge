@@ -14,6 +14,12 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "googleapis": "~2.0.3",
-    "google-auth-library": "~0.9.5"
+    "google-auth-library": "~0.9.5",
+    "pg": "~4.4.0",
+    "knex": "~0.8.6",
+    "redis": "~0.12.1",
+    "cookie-session": "~1.1.0",
+    "express-session": "~1.11.2",
+    "node-uuid": "~1.4.3"
   }
 }
