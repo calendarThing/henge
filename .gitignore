@@ -38,3 +38,6 @@ Thumbs.db
 
 test_data.json
 notes.txt
+*.sql
+*.db
+config.js
