@@ -5,16 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+module.exports = app;
 
 var fs = require('fs'); // Used for calendar API demo; probably not needed for full
 var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var calendar = google.calendar('v3');
+
+var knexConfig = require('./db/knexfile.js');
+var knex = require('knex')(knexConfig);
+app.set('database', knex);
+var database = app.get('database');
+
+var routes = require('./routes/index');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -60,13 +68,4 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});
-
-
-module.exports = app;
-
-app.set('port', process.env.PORT || 5678);
-
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port #' + app.get('port'));
 });
