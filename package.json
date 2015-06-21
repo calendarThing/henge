@@ -20,6 +20,9 @@
     "redis": "~0.12.1",
     "cookie-session": "~1.1.0",
     "express-session": "~1.11.2",
-    "node-uuid": "~1.4.3"
+    "node-uuid": "~1.4.3",
+    "passport": "~0.2.2",
+    "connect-flash": "~0.1.1",
+    "passport-local": "~1.0.0"
   }
 }

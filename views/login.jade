@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form#login(action="/api/login", method="post", name="login")
+    fieldset
+      legend Log In
+      p.field
+        label(for="log_name") User Name: 
+        input(type="text", id="log_name", placeholder="username")
+      p.field
+        label(for="log_pass") Password: 
+        input(type="password", id="log_pass", placeholder="password")
+      p.button
+        input(type="submit")
+  form#register(action="/api/register", method="post", name="register")
+    fieldset
+      legend New User
+      p.field
+        label(for="reg_name") User Name: 
+        input(type="text", id="reg_name", placeholder="username")
+      p.field
+        label(for="reg_pass") Password: 
+        input(type="password", id="reg_pass" placeholder="password")
+      p.field
+        label(for="pass_verify") Verify: 
+        input(type="password", id="pass_verify", placeholder="re-type password")
+      p.button
+        input(type="submit")

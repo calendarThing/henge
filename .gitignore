@@ -37,7 +37,7 @@ ehthumbs.db
 Thumbs.db
 
 test_data.json
-notes.txt
+notes.*
 *.sql
 *.db
 config.js

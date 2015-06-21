@@ -4,10 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var flash = require('connect-flash');
 var users = require('./routes/users');
-
+var session = require('express-session');
 var app = express();
+var config = require('./config.js');
+var uuid = require('node-uuid');
+var passport = require('passport'); // also in routes?
 
 module.exports = app;
 
@@ -34,8 +37,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash()); // for passport flash messages
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  genid:function(req) {
+    return uuid();
+  },
+  secret: config.sessionSecret
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 
