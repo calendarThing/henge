@@ -17,9 +17,11 @@ block content
         input(type="submit")
   form#register(action="/api/register", method="post", name="register")
     fieldset
+      //- user name/email uniqueness on client or server?
+      //- comparing two password fields should be on client
       legend New User
       p.field
-        label(for="reg_name") User Name: 
+        label(for="reg_name") Email Address: 
         input(type="text", id="reg_name", name="email", placeholder="username")
       p.field
         label(for="reg_pass") Password: 

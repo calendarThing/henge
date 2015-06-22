@@ -6,6 +6,8 @@ var app = require('./../app.js');
 var database = app.get('database');
 var passport = require('passport');
 var bcrypt = require('bcrypt');
+var uuid = require('node-uuid');
+var knex = require('knex');
 
 /* GET home page. */
 router.get('/', function(request, response) {
@@ -36,17 +38,27 @@ router.post('/api/login', function(request, response) {
 
 router.post('/api/register', function(request, response) {
   // Register them!
-  bcrypt.hash('inputPassword', 12, function(err, hash) {
-    console.log('This is my hash: %s', hash);
-    bcrypt.compare('inputPassword', hash, function(err, res) {
-      if(res) {
-        console.log('Verified!');
-      } else {
-        console.log("D'oh!");
-      }
-    });
+  var email = request.body.email;
+  var password = request.body.password;
+  database('person').where({
+    email: email
+  }).then(function(result) {
+    if (result.length !== 0) {
+      console.log(result);
+      console.error('Email address in use!');
+      response.redirect('/login'); // we'll want error codes for this
+    } else {
+      bcrypt.hash(password, 12, function(err, hash) {
+        console.log(password + ': ' + hash);
+        database('person').insert({ 
+          email: email, 
+          hash: hash })
+          .then(function() {
+            response.redirect('/newuser');
+          });
+      });
+    }
   });
-  response.redirect('/newuser');
 });
 
 module.exports = router;
