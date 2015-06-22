@@ -5,6 +5,7 @@ var env = process.env.NODE_ENV || 'development';
 var app = require('./../app.js');
 var database = app.get('database');
 var passport = require('passport');
+var bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get('/', function(request, response) {
@@ -35,6 +36,16 @@ router.post('/api/login', function(request, response) {
 
 router.post('/api/register', function(request, response) {
   // Register them!
+  bcrypt.hash('inputPassword', 12, function(err, hash) {
+    console.log('This is my hash: %s', hash);
+    bcrypt.compare('inputPassword', hash, function(err, res) {
+      if(res) {
+        console.log('Verified!');
+      } else {
+        console.log("D'oh!");
+      }
+    });
+  });
   response.redirect('/newuser');
 });
 
