@@ -9,21 +9,23 @@ block content
       legend Log In
       p.field
         label(for="log_name") User Name: 
-        input(type="text", id="log_name", placeholder="username")
+        input(type="text", id="log_name", name="username", placeholder="username")
       p.field
         label(for="log_pass") Password: 
-        input(type="password", id="log_pass", placeholder="password")
+        input(type="password", id="log_pass", name="password", placeholder="password")
       p.button
         input(type="submit")
   form#register(action="/api/register", method="post", name="register")
     fieldset
+      //- user name/email uniqueness on client or server?
+      //- comparing two password fields should be on client
       legend New User
       p.field
-        label(for="reg_name") User Name: 
-        input(type="text", id="reg_name", placeholder="username")
+        label(for="reg_name") Email Address: 
+        input(type="text", id="reg_name", name="email", placeholder="username")
       p.field
         label(for="reg_pass") Password: 
-        input(type="password", id="reg_pass" placeholder="password")
+        input(type="password", id="reg_pass", name="password", placeholder="password")
       p.field
         label(for="pass_verify") Verify: 
         input(type="password", id="pass_verify", placeholder="re-type password")
