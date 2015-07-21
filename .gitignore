@@ -41,3 +41,6 @@ notes.*
 *.sql
 *.db
 config.js
+
+# Sass Cache
+.sass-cache/

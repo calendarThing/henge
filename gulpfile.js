@@ -62,7 +62,7 @@ gulp.task('default', ['clean'], function() {
 gulp.task('watch', function() {
 
   // Watch .scss files
-  gulp.watch('css/**/*.scss', ['styles']);
+  gulp.watch('styles/**/*.scss', ['styles']);
 
   // Watch .js files
   // gulp.watch('js/main.js', ['scripts']);
